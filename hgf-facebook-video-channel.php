@@ -58,7 +58,7 @@ function hgf_video_channel_create_post_type()
     'labels'                   => $labels,
     'hierarchical'        => false,
     'description'         => 'description',
-    'taxonomies'          => array('category', 'Channel'),
+    // 'taxonomies'          => array('category', 'Channel'),
     'public'              => true,
     'show_ui'             => true,
     'show_in_menu'        => true,
@@ -81,6 +81,51 @@ function hgf_video_channel_create_post_type()
     );
     
     register_post_type('hgf_video', $args);
+
+    $labels = array(
+        'name'              => esc_html__( 'Video Categories', 'et_builder' ),
+        'singular_name'     => esc_html__( 'Video Category', 'et_builder' ),
+        'search_items'      => esc_html__( 'Search Categories', 'et_builder' ),
+        'all_items'         => esc_html__( 'All Categories', 'et_builder' ),
+        'parent_item'       => esc_html__( 'Parent Category', 'et_builder' ),
+        'parent_item_colon' => esc_html__( 'Parent Category:', 'et_builder' ),
+        'edit_item'         => esc_html__( 'Edit Category', 'et_builder' ),
+        'update_item'       => esc_html__( 'Update Category', 'et_builder' ),
+        'add_new_item'      => esc_html__( 'Add New Category', 'et_builder' ),
+        'new_item_name'     => esc_html__( 'New Category Name', 'et_builder' ),
+        'menu_name'         => esc_html__( 'Categories', 'et_builder' ),
+    );
+
+    register_taxonomy( 'hgf_video_category', array( 'hgf_video' ), array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+    ) );
+
+    $labels = array(
+        'name'              => esc_html__( 'Video Tags', 'et_builder' ),
+        'singular_name'     => esc_html__( 'Video Tag', 'et_builder' ),
+        'search_items'      => esc_html__( 'Search Tags', 'et_builder' ),
+        'all_items'         => esc_html__( 'All Tags', 'et_builder' ),
+        'parent_item'       => esc_html__( 'Parent Tag', 'et_builder' ),
+        'parent_item_colon' => esc_html__( 'Parent Tag:', 'et_builder' ),
+        'edit_item'         => esc_html__( 'Edit Tag', 'et_builder' ),
+        'update_item'       => esc_html__( 'Update Tag', 'et_builder' ),
+        'add_new_item'      => esc_html__( 'Add New Tag', 'et_builder' ),
+        'new_item_name'     => esc_html__( 'New Tag Name', 'et_builder' ),
+        'menu_name'         => esc_html__( 'Tags', 'et_builder' ),
+    );
+
+    register_taxonomy( 'hgf_video_tag', array( 'hgf_video' ), array(
+        'hierarchical'      => false,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+    ) );
+
 }
     
 add_action('init', 'hgf_video_channel_create_post_type');
