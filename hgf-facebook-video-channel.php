@@ -71,7 +71,7 @@ function hgf_video_channel_create_post_type()
     'has_archive'         => true,
     'query_var'           => true,
     'can_export'          => true,
-    'rewrite'             => array('slug' => 'Channel'),
+    'rewrite'             => array('slug' => 'channel'),
     'capability_type'     => 'post',
     'supports'            => array(
         'title', 'editor', 'author', 'thumbnail',
