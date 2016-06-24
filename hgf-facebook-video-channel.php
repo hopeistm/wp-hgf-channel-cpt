@@ -130,6 +130,17 @@ function hgf_video_channel_create_post_type()
     
 add_action('init', 'hgf_video_channel_create_post_type');
 
+function get_custom_post_type_template($single_template) {
+     global $post;
+
+     if ($post->post_type == 'hgf_video') {
+          $single_template = dirname( __FILE__ ) . '/single-hgf_video.php';
+     }
+     return $single_template;
+}
+add_filter( 'single_template', 'get_custom_post_type_template' );
+
+
 function hgf_video_channel_flush_rewrites()
 {
     hgf_video_channel_create_post_type();
@@ -138,4 +149,3 @@ function hgf_video_channel_flush_rewrites()
 
 register_deactivation_hook(__FILE__, 'hgf_video_channel_flush_rewrites');
 register_activation_hook(__FILE__, 'hgf_video_channel_flush_rewrites');
-
